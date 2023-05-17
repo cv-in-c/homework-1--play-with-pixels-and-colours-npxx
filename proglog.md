@@ -46,3 +46,22 @@ Color bar $\to$ Gray bar
 ![graybar](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/4923f847-6aaa-4c9a-bc41-74078132319c)
 
 <hr>
+
+### Task 4 | Shifting
+
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/0dbf3c01-f708-4b6e-a4ba-27886c334db5)
+$+12, -4$
+
+dog_saturated (HSV left)
+
+![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/1b0edab0-0c05-4e9e-beda-03ea390647ba)
+
+doglight_fixed (Clamping left)
+
+![doglight_fixed](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/72f3e9f4-da17-4e01-b361-6ca052a538ed)
+
+overflow (done)
+
+![overflow](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/2e2e860e-e57f-4c5f-ad5e-6913b38bc721)
+
+<hr>
