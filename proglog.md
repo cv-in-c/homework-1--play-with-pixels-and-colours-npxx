@@ -27,3 +27,10 @@ Regenerating the files
 
 (Also implemented the `clamp` padding strategy, but couldn't test it out, yet)
 <hr>
+
+### Task 2 | Copying Image
+
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/1bea72a4-4948-41f1-8d5a-f1ee56ebc030)
+$+8, -8$
+
+<hr>
