@@ -56,7 +56,13 @@ void shift_image(image im, int c, float v)
 
 void clamp_image(image im)
 {
-    // TODO Fill this in
+    for (int i = 0; i < im.w * im.h * im.c; i++)
+    {
+        if (im.data[i] > 1)
+            im.data[i] = 1;
+        else if (im.data[i] < 0)
+            im.data[i] = 0;
+    }
 }
 
 // These might be handy
