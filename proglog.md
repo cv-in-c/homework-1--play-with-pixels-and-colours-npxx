@@ -34,3 +34,15 @@ Regenerating the files
 $+8, -8$
 
 <hr>
+
+### Task 3 | RGB to Grayscale
+
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/76ad228a-7a4e-42b7-bb3b-e32e681663f4)
+$+10, -6$
+
+Color bar $\to$ Gray bar
+
+![colorbar](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/dd5f5d04-835e-4025-ad74-2f6089df0eb2)
+![graybar](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/4923f847-6aaa-4c9a-bc41-74078132319c)
+
+<hr>
