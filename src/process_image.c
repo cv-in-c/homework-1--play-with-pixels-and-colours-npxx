@@ -38,6 +38,11 @@ image rgb_to_grayscale(image im)
 {
     assert(im.c == 3);
     image gray = make_image(im.w, im.h, 1);
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        gray.data[i] = 0.299 * im.data[i] + 0.587 * im.data[i + im.w * im.h] + 0.114 * im.data[i + 2 * im.w * im.h];
+        // Using the given formula Y' = 0.299 R' + 0.587 G' + .114 B' to convert RGB to grayscale
+    }
     return gray;
 }
 
