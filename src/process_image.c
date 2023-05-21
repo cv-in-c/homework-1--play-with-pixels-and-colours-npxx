@@ -113,5 +113,60 @@ void rgb_to_hsv(image im)
 
 void hsv_to_rgb(image im)
 {
-    // TODO Fill this in
+    // for (int i = 0; i < im.w * im.h; i++)
+    // {
+    //     float H = im.data[i];
+    //     float S_V = im.data[i + im.w * im.h];
+    //     float V = im.data[i + 2 * im.w * im.h];
+    //     float C = V * S_V;
+    //     float H_ = 6 * H;
+    //     float meow = (int)H_ / 2;
+    //     float X = C * (1 - (fabs(H_ - 2 * meow - 1)));
+    //     if (0 < H_ && H_ < 1.0)
+    //         im.data[i] = C, im.data[i + im.w * im.h] = X, im.data[i + 2 * im.w * im.h] = 0;
+    //     else if (1.0 <= H_ && H_ < 2.0)
+    //         im.data[i] = X, im.data[i + im.w * im.h] = C, im.data[i + 2 * im.w * im.h] = 0;
+    //     else if (2.0 <= H_ && H_ < 3.0)
+    //         im.data[i] = 0, im.data[i + im.w * im.h] = C, im.data[i + 2 * im.w * im.h] = X;
+    //     else if (3.0 <= H_ && H_ < 4.0)
+    //         im.data[i] = 0, im.data[i + im.w * im.h] = X, im.data[i + 2 * im.w * im.h] = C;
+    //     else if (4.0 <= H_ && H_ < 5.0)
+    //         im.data[i] = X, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = C;
+    //     else if (5.0 <= H_ && H_ < 1.0)
+    //         im.data[i] = C, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = X;
+
+    //     float m = V - C;
+
+    //     im.data[i] += m;
+    //     im.data[i + im.w * im.h] += m;
+    //     im.data[i + 2 * im.w * im.h] += m;
+    // }
+
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        float H = im.data[i];
+        float S = im.data[i + im.w * im.h];
+        float V = im.data[i + 2 * im.w * im.h];
+        float H_ = H * 6;
+        else if (H_ >= 6)
+            H_ -= 6; // H must be < 1
+        float P = V * (1.0 - S);
+        float Q = V * (1.0 - S * (H_ - floor(H_)));
+        float T = V * (1.0 - S * (1.0 - (H_ - floor(H_))));
+        if (0 < H_ && H_ < 1.0)
+            im.data[i] = V, im.data[i + im.w * im.h] = T, im.data[i + 2 * im.w * im.h] = P;
+        else if (1.0 <= H_ && H_ < 2.0)
+            im.data[i] = Q, im.data[i + im.w * im.h] = V, im.data[i + 2 * im.w * im.h] = P;
+        else if (2.0 <= H_ && H_ < 3.0)
+            im.data[i] = P, im.data[i + im.w * im.h] = V, im.data[i + 2 * im.w * im.h] = T;
+        else if (3.0 <= H_ && H_ < 4.0)
+            im.data[i] = P, im.data[i + im.w * im.h] = Q, im.data[i + 2 * im.w * im.h] = V;
+        else if (4.0 <= H_ && H_ < 5.0)
+            im.data[i] = T, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = V;
+        else if (5.0 <= H_ && H_ < 6.0)
+            im.data[i] = V, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = Q;
+        else
+            im.data[i] = 0, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = 0;
+    }
+    return;
 }
