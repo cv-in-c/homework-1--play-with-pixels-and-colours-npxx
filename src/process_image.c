@@ -9,9 +9,9 @@ float get_pixel(image im, int x, int y, int c)
     if (x < 0 || x >= im.w || y < 0 || y >= im.h || c < 0 || c >= im.c)
     {
         // Implementing the "clamp" padding strategy
-        int xa = (x < 0) ? 0 : im.w;
-        int ya = (y < 0) ? 0 : im.h;
-        int ca = (c < 0) ? 0 : im.c;
+        int xa = (x < 0) ? 0 : ((x >= im.w) ? im.w : x);
+        int ya = (y < 0) ? 0 : ((y >= im.h) ? im.h : y);
+        int ca = (c < 0) ? 0 : ((c >= im.c) ? im.c : c);
         return im.data[xa + im.w * ya + im.w * im.h * ca];
     }
     else
@@ -50,7 +50,7 @@ void shift_image(image im, int c, float v)
 {
     for (int i = 0; i < im.w * im.h; i++)
     {
-        im.data[i + im.w * im.h * c] += v; // Should I add or multiply (?)
+        im.data[i + im.w * im.h * c] += v; // Adding is fine, since we are shifting
     }
 }
 
@@ -78,7 +78,37 @@ float three_way_min(float a, float b, float c)
 
 void rgb_to_hsv(image im)
 {
-    // TODO Fill this in
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        float V = three_way_max(im.data[i], im.data[i + im.w * im.h], im.data[i + 2 * im.w * im.h]);
+        float m = three_way_min(im.data[i], im.data[i + im.w * im.h], im.data[i + 2 * im.w * im.h]);
+        float S = 0, C = V - m;
+        if (fabs(C - 0) < .00001)
+            S = 0;
+        else
+            S = (V - m) / V;
+        float R = im.data[i], G = im.data[i + im.w * im.h], B = im.data[i + 2 * im.w * im.h];
+        float H_ = 0;
+        if (fabs(C - 0) < .00001)
+            H_ = 0;
+        else if (fabs(V - R) < .00001)
+            H_ = (G - B) / C;
+        else if (fabs(V - G) < .00001)
+            H_ = (B - R) / C + 2;
+        else if (fabs(V - B) < 0.00001)
+            H_ = (R - G) / C + 4;
+
+        float H = 0;
+        if (H_ < 0)
+            H = H_ / 6 + 1;
+        else
+            H = H_ / 6;
+
+        im.data[i] = H;
+        im.data[i + im.w * im.h] = S;
+        im.data[i + 2 * im.w * im.h] = V;
+    }
+    return;
 }
 
 void hsv_to_rgb(image im)

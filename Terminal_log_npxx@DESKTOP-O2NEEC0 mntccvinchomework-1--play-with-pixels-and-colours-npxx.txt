@@ -1,0 +1,272 @@
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc$ cd homework-1--play-with-pixels-and-colours-npxx/
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ls
+Makefile  README.md  __pycache__  data  figs  src  tryit.py  uwimg.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ make
+Command 'make' not found, but can be installed with:
+sudo apt install make        # version 4.3-4.1build1, or
+sudo apt install make-guile  # version 4.3-4.1build1
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ sudo apt install make
+[sudo] password for npxx:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Suggested packages:
+  make-doc
+The following NEW packages will be installed:
+  make
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 180 kB of archives.
+  guile-3.0-libs
+Suggested packages:
+  make-doc
+The following packages will be REMOVED:
+  make
+The following NEW packages will be installed:
+  guile-3.0-libs make-guile
+0 upgraded, 2 newly installed, 1 to remove and 0 not upgraded.
+Need to get 7719 kB of archives.
+After this operation, 53.3 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu jammy/universe amd64 guile-3.0-libs amd64 3.0.7-1 [7538 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy/universe amd64 make-guile amd64 4.3-4.1build1 [182 kB]
+Fetched 7719 kB in 12s (670 kB/s)
+(Reading database ... 80540 files and directories currently installed.)
+Removing make (4.3-4.1build1) ...
+Selecting previously unselected package guile-3.0-libs:amd64.
+(Reading database ... 80522 files and directories currently installed.)
+Preparing to unpack .../guile-3.0-libs_3.0.7-1_amd64.deb ...
+Unpacking guile-3.0-libs:amd64 (3.0.7-1) ...
+Selecting previously unselected package make-guile.
+Preparing to unpack .../make-guile_4.3-4.1build1_amd64.deb ...
+Unpacking make-guile (4.3-4.1build1) ...
+Setting up guile-3.0-libs:amd64 (3.0.7-1) ...
+Setting up make-guile (4.3-4.1build1) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ make
+mkdir -p obj
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/load_image.c -o obj/load_image.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/process_image.c -o obj/process_image.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/args.c -o obj/args.o
+gcc -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -shared obj/load_image.o obj/process_image.o obj/args.o -o libuwimg.so -lm -pthread
+ar rcs libuwimg.a obj/load_image.o obj/process_image.o obj/args.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/test.c -o obj/test.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast obj/test.o obj/load_image.o obj/process_image.o obj/args.o -o uwimg -lm -pthread
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 1,0,1))] in ./src/test.c, line 21
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_set_pixel] testing [same_image(im, d)] in ./src/test.c, line 45
+failed: [test_copy] testing [same_image(im, c)] in ./src/test.c, line 60
+failed: [test_shift] testing [within_eps(im.data[0], c.data[0])] in ./src/test.c, line 68
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+13] + .1, c.data[im.w*im.h + 13])] in ./src/test.c, line 69
+failed: [test_shift] testing [within_eps(im.data[2*im.w*im.h+72], c.data[2*im.w*im.h + 72])] in ./src/test.c, line 70
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+47] + .1, c.data[im.w*im.h + 47])] in ./src/test.c, line 71
+failed: [test_grayscale] testing [same_image(gray, g)] in ./src/test.c, line 53
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+failed: [test_hsv_to_rgb] testing [same_image(im, c)] in ./src/test.c, line 88
+16 tests, 3 passed, 13 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python tryit.py
+Command 'python' not found, did you mean:
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ git add .
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   .gitignore
+        modified:   Makefile
+        modified:   README.md
+        new file:   dog_no_red.jpg
+        new file:   dog_saturated.jpg
+        new file:   doglight_fixed.jpg
+        modified:   figs/Eyesensitivity.svg
+        modified:   figs/eq.svg
+        new file:   graybar.jpg
+        new file:   overflow.jpg
+        modified:   src/args.c
+        modified:   src/args.h
+        modified:   src/image.h
+        modified:   src/load_image.c
+        modified:   src/process_image.c
+        modified:   src/stb_image.h
+        modified:   src/stb_image_write.h
+        modified:   src/test.c
+        modified:   src/test.h
+        modified:   tryit.py
+        modified:   uwimg.py
+
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ git commit -m 'make done'
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: empty ident name (for <npxx@DESKTOP-O2NEEC0.>) not allowed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 1,0,1))] in ./src/test.c, line 21
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_set_pixel] testing [same_image(im, d)] in ./src/test.c, line 45
+failed: [test_copy] testing [same_image(im, c)] in ./src/test.c, line 60
+failed: [test_shift] testing [within_eps(im.data[0], c.data[0])] in ./src/test.c, line 68
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+13] + .1, c.data[im.w*im.h + 13])] in ./src/test.c, line 69
+failed: [test_shift] testing [within_eps(im.data[2*im.w*im.h+72], c.data[2*im.w*im.h + 72])] in ./src/test.c, line 70
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+47] + .1, c.data[im.w*im.h + 47])] in ./src/test.c, line 71
+failed: [test_grayscale] testing [same_image(gray, g)] in ./src/test.c, line 53
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+failed: [test_hsv_to_rgb] testing [same_image(im, c)] in ./src/test.c, line 88
+16 tests, 3 passed, 13 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python tryit.py
+Command 'python' not found, did you mean:
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 1,0,1))] in ./src/test.c, line 21
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_set_pixel] testing [same_image(im, d)] in ./src/test.c, line 45
+failed: [test_copy] testing [same_image(im, c)] in ./src/test.c, line 60
+failed: [test_shift] testing [within_eps(im.data[0], c.data[0])] in ./src/test.c, line 68
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+13] + .1, c.data[im.w*im.h + 13])] in ./src/test.c, line 69
+failed: [test_shift] testing [within_eps(im.data[2*im.w*im.h+72], c.data[2*im.w*im.h + 72])] in ./src/test.c, line 70
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+47] + .1, c.data[im.w*im.h + 47])] in ./src/test.c, line 71
+failed: [test_grayscale] testing [same_image(gray, g)] in ./src/test.c, line 53
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+failed: [test_hsv_to_rgb] testing [same_image(im, c)] in ./src/test.c, line 88
+16 tests, 3 passed, 13 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python tryit.py
+Command 'python' not found, did you mean:
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python
+Command 'python' not found, did you mean:
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python-is-python3 tryit.py
+python-is-python3: command not found
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ make
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/process_image.c -o obj/process_image.o
+gcc -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -shared obj/load_image.o obj/process_image.o obj/args.o -o libuwimg.so -lm -pthread
+ar rcs libuwimg.a obj/load_image.o obj/process_image.o obj/args.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast obj/test.o obj/load_image.o obj/process_image.o obj/args.o -o uwimg -lm -pthread
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_copy] testing [same_image(im, c)] in ./src/test.c, line 60
+failed: [test_shift] testing [within_eps(im.data[0], c.data[0])] in ./src/test.c, line 68
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+13] + .1, c.data[im.w*im.h + 13])] in ./src/test.c, line 69
+failed: [test_shift] testing [within_eps(im.data[2*im.w*im.h+72], c.data[2*im.w*im.h + 72])] in ./src/test.c, line 70
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+47] + .1, c.data[im.w*im.h + 47])] in ./src/test.c, line 71
+failed: [test_grayscale] testing [same_image(gray, g)] in ./src/test.c, line 53
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+failed: [test_hsv_to_rgb] testing [same_image(im, c)] in ./src/test.c, line 88
+16 tests, 5 passed, 11 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ make
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/process_image.c -o obj/process_image.o
+gcc -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -shared obj/load_image.o obj/process_image.o obj/args.o -o libuwimg.so -lm -pthread
+ar rcs libuwimg.a obj/load_image.o obj/process_image.o obj/args.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast obj/test.o obj/load_image.o obj/process_image.o obj/args.o -o uwimg -lm -pthread
+^[[A^[[A^[[A^[[npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npx./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_copy] testing [same_image(im, c)] in ./src/test.c, line 60
+failed: [test_shift] testing [within_eps(im.data[0], c.data[0])] in ./src/test.c, line 68
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+13] + .1, c.data[im.w*im.h + 13])] in ./src/test.c, line 69
+failed: [test_shift] testing [within_eps(im.data[2*im.w*im.h+72], c.data[2*im.w*im.h + 72])] in ./src/test.c, line 70
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+47] + .1, c.data[im.w*im.h + 47])] in ./src/test.c, line 71
+failed: [test_grayscale] testing [same_image(gray, g)] in ./src/test.c, line 53
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+failed: [test_hsv_to_rgb] testing [same_image(im, c)] in ./src/test.c, line 88
+16 tests, 5 passed, 11 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ make
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/process_image.c -o obj/process_image.o
+gcc -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -shared obj/load_image.o obj/process_image.o obj/args.o -o libuwimg.so -lm -pthread
+ar rcs libuwimg.a obj/load_image.o obj/process_image.o obj/args.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast obj/test.o obj/load_image.o obj/process_image.o obj/args.o -o uwimg -lm -pthread
+^[[A^[[Anpxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(0, get_pixel(im, 7,8,1))] in ./src/test.c, line 27
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+13] + .1, c.data[im.w*im.h + 13])] in ./src/test.c, line 69
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+47] + .1, c.data[im.w*im.h + 47])] in ./src/test.c, line 71
+failed: [test_grayscale] testing [same_image(gray, g)] in ./src/test.c, line 53
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+16 tests, 8 passed, 8 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(0, get_pixel(im, 7,8,1))] in ./src/test.c, line 27
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+13] + .1, c.data[im.w*im.h + 13])] in ./src/test.c, line 69
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+47] + .1, c.data[im.w*im.h + 47])] in ./src/test.c, line 71
+failed: [test_grayscale] testing [same_image(gray, g)] in ./src/test.c, line 53
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+16 tests, 8 passed, 8 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ make
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/process_image.c -o obj/process_image.o
+gcc -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -shared obj/load_image.o obj/process_image.o obj/args.o -o libuwimg.so -lm -pthread
+ar rcs libuwimg.a obj/load_image.o obj/process_image.o obj/args.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast obj/test.o obj/load_image.o obj/process_image.o obj/args.o -o uwimg -lm -pthread
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+13] + .1, c.data[im.w*im.h + 13])] in ./src/test.c, line 69
+failed: [test_shift] testing [within_eps(im.data[im.w*im.h+47] + .1, c.data[im.w*im.h + 47])] in ./src/test.c, line 71
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+16 tests, 10 passed, 6 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ make
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/process_image.c -o obj/process_image.o
+gcc -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -shared obj/load_image.o obj/process_image.o obj/args.o -o libuwimg.so -lm -pthread
+ar rcs libuwimg.a obj/load_image.o obj/process_image.o obj/args.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast obj/test.o obj/load_image.o obj/process_image.o obj/args.o -o uwimg -lm -pthread
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+16 tests, 12 passed, 4 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ make
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -c ./src/process_image.c -o obj/process_image.o
+gcc -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast -shared obj/load_image.o obj/process_image.o obj/args.o -o libuwimg.so -lm -pthread
+ar rcs libuwimg.a obj/load_image.o obj/process_image.o obj/args.o
+gcc -Iinclude/ -Isrc/  -Wall -Wno-unknown-pragmas -Wfatal-errors -fPIC -Ofast obj/test.o obj/load_image.o obj/process_image.o obj/args.o -o uwimg -lm -pthread
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ ./uwimg test
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 0,3,1))] in ./src/test.c, line 25
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,0))] in ./src/test.c, line 26
+failed: [test_get_pixel] testing [within_eps(1, get_pixel(im, 7,8,2))] in ./src/test.c, line 28
+failed: [test_rgb_to_hsv] testing [same_image(im, hsv)] in ./src/test.c, line 79
+16 tests, 12 passed, 4 failed
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$ python3 tryit.py
+npxx@DESKTOP-O2NEEC0:/mnt/c/cvinc/homework-1--play-with-pixels-and-colours-npxx$
