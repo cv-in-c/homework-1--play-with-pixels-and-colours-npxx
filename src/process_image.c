@@ -54,6 +54,16 @@ void shift_image(image im, int c, float v)
     }
 }
 
+// Adding a scaling function
+
+void scale_image(image im, int c, float v)
+{
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        im.data[i + im.w * im.h * c] *= v; // Multiplying since we are scaling
+    }
+}
+
 void clamp_image(image im)
 {
     for (int i = 0; i < im.w * im.h * im.c; i++)
@@ -165,8 +175,8 @@ void hsv_to_rgb(image im)
             im.data[i] = T, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = V;
         else if (5.0 <= H_ && H_ < 6.0)
             im.data[i] = V, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = Q;
-        else
-            im.data[i] = 0, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = 0;
+        // else
+        //     im.data[i] = 0, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = 0;
     }
     return;
 }
