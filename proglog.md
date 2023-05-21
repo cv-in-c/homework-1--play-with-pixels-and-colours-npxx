@@ -1,6 +1,6 @@
 ### Task 0 | Initial test (without any modifications)
 
-![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/7c3bb79d-7c1f-4bd6-b53a-a41e2903e862)
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/7c3bb79d-7c1f-4bd6-b53a-a41e2903e862)<br>
 $+3, -13$
 
 ![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/bda44abc-f10e-4be9-8fb8-7d8c9fa77b0f)
@@ -14,7 +14,7 @@ Running the `tryit.py` generated 5 files
 
 ### Task 1 | `get_pixel` and `set_pixel` | No-red test
 
-![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/3aac6f6e-96cd-4e38-b2ed-15a3745ed54b)
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/3aac6f6e-96cd-4e38-b2ed-15a3745ed54b)<br>
 $+5, -11$
 
 Regenerating the files
@@ -30,14 +30,14 @@ Regenerating the files
 
 ### Task 2 | Copying Image
 
-![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/1bea72a4-4948-41f1-8d5a-f1ee56ebc030)
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/1bea72a4-4948-41f1-8d5a-f1ee56ebc030)<br>
 $+8, -8$
 
 <hr>
 
 ### Task 3 | RGB to Grayscale
 
-![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/76ad228a-7a4e-42b7-bb3b-e32e681663f4)
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/76ad228a-7a4e-42b7-bb3b-e32e681663f4)<br>
 $+10, -6$
 
 Color bar $\to$ Gray bar
@@ -49,7 +49,7 @@ Color bar $\to$ Gray bar
 
 ### Task 4 | Shifting
 
-![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/0dbf3c01-f708-4b6e-a4ba-27886c334db5)
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/0dbf3c01-f708-4b6e-a4ba-27886c334db5)<br>
 $+12, -4$
 
 dog_saturated (HSV left)
@@ -68,7 +68,7 @@ overflow (done)
 
 ### Task 5 | Clamping
 
-![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/457c7b32-722f-4217-85b2-199755d52e11)
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/457c7b32-722f-4217-85b2-199755d52e11)<br>
 $+12, -4$
 
 doglight_fixed (now)
@@ -76,3 +76,15 @@ doglight_fixed (now)
 ![doglight_fixed](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/806a0b00-92fe-4eaa-a851-53e0ea01e897)
 
 <hr>
+
+### Task 6 | RGB to HSV
+
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/e196a110-5c1b-4f7a-b1d0-4ec51af28cbd)<br>
+$+14, -2$
+
+(Also partially fixed the `get_pixel` errors caused due to incorrect clamp padding code)
+
+new `dog_saturated.jpg`<br>
+![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/fd4bd0fc-2027-427f-8a7a-9702d7366c3a)
+
+
