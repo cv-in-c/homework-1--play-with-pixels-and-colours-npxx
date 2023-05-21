@@ -88,3 +88,20 @@ new `dog_saturated.jpg`<br>
 ![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/fd4bd0fc-2027-427f-8a7a-9702d7366c3a)
 
 
+### Task 7 | HSV to RGB
+
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/0a9b4bfc-c266-4aa3-b17a-eef9ff0cb121)
+$+14, -2$
+
+converted image<br>
+![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/92b00648-d69f-4a3a-bf30-e922a9dc7d5c)
+
+second try<br>
+![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/1af0b14c-e961-42b2-8f0b-4036984248d7)
+
+third try(much better)<br>
+![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/40a6c499-0731-451c-9604-7af23517214b)
+
+try 4<br>
+![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/6c0bfb94-6e47-4e02-8020-d7907cacf328)
+
