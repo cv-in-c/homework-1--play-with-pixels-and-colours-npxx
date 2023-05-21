@@ -148,7 +148,7 @@ void hsv_to_rgb(image im)
         float S = im.data[i + im.w * im.h];
         float V = im.data[i + 2 * im.w * im.h];
         float H_ = H * 6;
-        else if (H_ >= 6)
+        if (H_ >= 6)
             H_ -= 6; // H must be < 1
         float P = V * (1.0 - S);
         float Q = V * (1.0 - S * (H_ - floor(H_)));
