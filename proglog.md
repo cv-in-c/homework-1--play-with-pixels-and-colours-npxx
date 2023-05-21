@@ -65,3 +65,14 @@ overflow (done)
 ![overflow](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/2e2e860e-e57f-4c5f-ad5e-6913b38bc721)
 
 <hr>
+
+### Task 5 | Clamping
+
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/457c7b32-722f-4217-85b2-199755d52e11)
+$+12, -4$
+
+doglight_fixed (now)
+
+![doglight_fixed](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/806a0b00-92fe-4eaa-a851-53e0ea01e897)
+
+<hr>
