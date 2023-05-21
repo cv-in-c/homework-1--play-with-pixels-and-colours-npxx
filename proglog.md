@@ -105,3 +105,28 @@ third try(much better)<br>
 try 4<br>
 ![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/6c0bfb94-6e47-4e02-8020-d7907cacf328)
 
+
+### Task 8 | Scaling a channel
+
+Added the following lines in respective files
+
+`void scale_image(image im, int c, float v);` in `image.h`
+```C
+void scale_image(image im, int c, float v)
+{
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        im.data[i + im.w * im.h * c] *= v; // Multiplying since we are scaling
+    }
+}
+```
+(in `process_image.c`)
+
+```Py
+scale_image = lib.scale_image
+scale_image.argtypes = [IMAGE, c_int, c_float]
+```
+(in `uwimg.py`)
+
+final image<br>
+![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/246f9fd2-1b9f-4793-a90e-c9659106f14c)
