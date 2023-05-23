@@ -87,10 +87,11 @@ $+14, -2$
 new `dog_saturated.jpg`<br>
 ![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/fd4bd0fc-2027-427f-8a7a-9702d7366c3a)
 
+<hr>
 
 ### Task 7 | HSV to RGB
 
-![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/0a9b4bfc-c266-4aa3-b17a-eef9ff0cb121)
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/0a9b4bfc-c266-4aa3-b17a-eef9ff0cb121)<br>
 $+14, -2$
 
 converted image<br>
@@ -105,6 +106,7 @@ third try(much better)<br>
 try 4<br>
 ![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/6c0bfb94-6e47-4e02-8020-d7907cacf328)
 
+<hr>
 
 ### Task 8 | Scaling a channel
 
@@ -130,3 +132,35 @@ scale_image.argtypes = [IMAGE, c_int, c_float]
 
 final image<br>
 ![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/246f9fd2-1b9f-4793-a90e-c9659106f14c)
+
+<hr>
+
+### Task 5.1 Clamping
+(update)
+
+fixed Clamping code completely
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/234cdbb0-a8a0-490b-b8d6-805cbcdc4a18)
+$+15, -1$
+
+<hr>
+
+### Task 6.1 RGB to HSV
+
+(Update)
+Ours is very close to the one obtained by matlab<br>
+![dog_hsv_ml](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/47d8b08a-91b1-4874-855a-d6447c872975)
+
+<hr>
+
+### Task 7.1 HSV to RGB
+
+(Update)
+Fixed code (usiing the algorithm described in [Smith, A. R. “Color Gamut Transform Pairs”. SIGGRAPH 78 Conference Proceedings. 1978, pp. 12–19](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/color78.pdf)
+
+![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/6f1d53cd-ffcc-468d-8408-de14aed0aee8)<br>
+$+16, 0$ Yay!
+
+Final Try!<br>
+![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/cb5de956-5838-487e-9562-505ed6d77f48)
+
+<hr>
