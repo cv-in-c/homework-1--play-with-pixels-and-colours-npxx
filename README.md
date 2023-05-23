@@ -1,3 +1,5 @@
+## Progress Log
+
 ### Task 0 | Initial test (without any modifications)
 
 ![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/7c3bb79d-7c1f-4bd6-b53a-a41e2903e862)<br>
