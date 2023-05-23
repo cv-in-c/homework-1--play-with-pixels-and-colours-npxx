@@ -164,3 +164,11 @@ Final Try!<br>
 ![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/cb5de956-5838-487e-9562-505ed6d77f48)
 
 <hr>
+
+### Task 9 | RGB to XYZ to LUV to (HCL?) to LUV to XYZ to RGB
+
+Sources:<br>
+1. https://www.cs.rit.edu/~ncs/color/t_convert.html
+2. https://en.wikipedia.org/wiki/CIELUV#Cylindrical_representation_(CIELCh)
+
+<hr>
