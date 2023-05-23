@@ -155,7 +155,7 @@ Ours is very close to the one obtained by matlab<br>
 ### Task 7.1 HSV to RGB
 
 (Update)
-Fixed code (usiing the algorithm described in [Smith, A. R. “Color Gamut Transform Pairs”. SIGGRAPH 78 Conference Proceedings. 1978, pp. 12–19](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/color78.pdf)
+Fixed code (usiing the algorithm described in [Smith, A. R. “Color Gamut Transform Pairs”. SIGGRAPH 78 Conference Proceedings. 1978, pp. 12–19](/color78.pdf)
 
 ![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/6f1d53cd-ffcc-468d-8408-de14aed0aee8)<br>
 $+16, 0$ Yay!
