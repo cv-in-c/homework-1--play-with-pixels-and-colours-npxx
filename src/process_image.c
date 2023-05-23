@@ -9,9 +9,9 @@ float get_pixel(image im, int x, int y, int c)
     if (x < 0 || x >= im.w || y < 0 || y >= im.h || c < 0 || c >= im.c)
     {
         // Implementing the "clamp" padding strategy
-        int xa = (x < 0) ? 0 : ((x >= im.w) ? im.w : x);
-        int ya = (y < 0) ? 0 : ((y >= im.h) ? im.h : y);
-        int ca = (c < 0) ? 0 : ((c >= im.c) ? im.c : c);
+        int xa = (x < 0) ? 0 : ((x >= im.w) ? im.w - 1 : x);
+        int ya = (y < 0) ? 0 : ((y >= im.h) ? im.h - 1 : y);
+        int ca = (c < 0) ? 0 : ((c >= im.c) ? im.c - 1 : c);
         return im.data[xa + im.w * ya + im.w * im.h * ca];
     }
     else
@@ -93,7 +93,7 @@ void rgb_to_hsv(image im)
         float V = three_way_max(im.data[i], im.data[i + im.w * im.h], im.data[i + 2 * im.w * im.h]);
         float m = three_way_min(im.data[i], im.data[i + im.w * im.h], im.data[i + 2 * im.w * im.h]);
         float S = 0, C = V - m;
-        if (fabs(C - 0) < .00001)
+        if (fabs(V - 0) < .00001)
             S = 0;
         else
             S = (V - m) / V;
@@ -152,31 +152,91 @@ void hsv_to_rgb(image im)
     //     im.data[i + 2 * im.w * im.h] += m;
     // }
 
+    // for (int i = 0; i < im.w * im.h; i++)
+    // {
+    //     float H = im.data[i];
+    //     float S = im.data[i + im.w * im.h];
+    //     float V = im.data[i + 2 * im.w * im.h];
+    //     float H_ = H * 6;
+    //     if (H_ >= 6)
+    //         H_ -= 6; // H must be < 1
+    //     float P = V * (1.0 - S);
+    //     float Q = V * (1.0 - S * (H_ - floor(H_)));
+    //     float T = V * (1.0 - S * (1.0 - (H_ - floor(H_))));
+    //     if (0 < H_ && H_ < 1.0)
+    //         im.data[i] = V, im.data[i + im.w * im.h] = T, im.data[i + 2 * im.w * im.h] = P;
+    //     else if (1.0 <= H_ && H_ < 2.0)
+    //         im.data[i] = Q, im.data[i + im.w * im.h] = V, im.data[i + 2 * im.w * im.h] = P;
+    //     else if (2.0 <= H_ && H_ < 3.0)
+    //         im.data[i] = P, im.data[i + im.w * im.h] = V, im.data[i + 2 * im.w * im.h] = T;
+    //     else if (3.0 <= H_ && H_ < 4.0)
+    //         im.data[i] = P, im.data[i + im.w * im.h] = Q, im.data[i + 2 * im.w * im.h] = V;
+    //     else if (4.0 <= H_ && H_ < 5.0)
+    //         im.data[i] = T, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = V;
+    //     else if (5.0 <= H_ && H_ < 6.0)
+    //         im.data[i] = V, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = Q;
+    //     // else
+    //     //     im.data[i] = 0, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = 0;
+    // }
+
+    // From, Color Gamut Transform Pairs (Smith A. R., 1978)
+
     for (int i = 0; i < im.w * im.h; i++)
     {
         float H = im.data[i];
         float S = im.data[i + im.w * im.h];
         float V = im.data[i + 2 * im.w * im.h];
-        float H_ = H * 6;
-        if (H_ >= 6)
-            H_ -= 6; // H must be < 1
-        float P = V * (1.0 - S);
-        float Q = V * (1.0 - S * (H_ - floor(H_)));
-        float T = V * (1.0 - S * (1.0 - (H_ - floor(H_))));
-        if (0 < H_ && H_ < 1.0)
-            im.data[i] = V, im.data[i + im.w * im.h] = T, im.data[i + 2 * im.w * im.h] = P;
-        else if (1.0 <= H_ && H_ < 2.0)
-            im.data[i] = Q, im.data[i + im.w * im.h] = V, im.data[i + 2 * im.w * im.h] = P;
-        else if (2.0 <= H_ && H_ < 3.0)
-            im.data[i] = P, im.data[i + im.w * im.h] = V, im.data[i + 2 * im.w * im.h] = T;
-        else if (3.0 <= H_ && H_ < 4.0)
-            im.data[i] = P, im.data[i + im.w * im.h] = Q, im.data[i + 2 * im.w * im.h] = V;
-        else if (4.0 <= H_ && H_ < 5.0)
-            im.data[i] = T, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = V;
-        else if (5.0 <= H_ && H_ < 6.0)
-            im.data[i] = V, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = Q;
-        // else
-        //     im.data[i] = 0, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = 0;
+
+        float R, G, B;
+        float H_ = 6 * H;
+        int I = floor(H_);
+        float F = H_ - I;
+        float M = V * (1 - S);
+        float N = V * (1 - S * F);
+        float K = V * (1 - S * (1 - F));
+
+        switch (I)
+        {
+        case 0:
+            R = V;
+            G = K;
+            B = M;
+            break;
+        case 1:
+            R = N;
+            G = V;
+            B = M;
+            break;
+        case 2:
+            R = M;
+            G = V;
+            B = K;
+            break;
+        case 3:
+            R = M;
+            G = N;
+            B = V;
+            break;
+        case 4:
+            R = K;
+            G = M;
+            B = V;
+            break;
+        case 5:
+            R = V;
+            G = M;
+            B = N;
+            break;
+        default:
+            R = 0;
+            G = 0;
+            B = 0;
+            break;
+        }
+
+        im.data[i] = R;
+        im.data[i + im.w * im.h] = G;
+        im.data[i + 2 * im.w * im.h] = B;
     }
     return;
 }
