@@ -123,62 +123,6 @@ void rgb_to_hsv(image im)
 
 void hsv_to_rgb(image im)
 {
-    // for (int i = 0; i < im.w * im.h; i++)
-    // {
-    //     float H = im.data[i];
-    //     float S_V = im.data[i + im.w * im.h];
-    //     float V = im.data[i + 2 * im.w * im.h];
-    //     float C = V * S_V;
-    //     float H_ = 6 * H;
-    //     float meow = (int)H_ / 2;
-    //     float X = C * (1 - (fabs(H_ - 2 * meow - 1)));
-    //     if (0 < H_ && H_ < 1.0)
-    //         im.data[i] = C, im.data[i + im.w * im.h] = X, im.data[i + 2 * im.w * im.h] = 0;
-    //     else if (1.0 <= H_ && H_ < 2.0)
-    //         im.data[i] = X, im.data[i + im.w * im.h] = C, im.data[i + 2 * im.w * im.h] = 0;
-    //     else if (2.0 <= H_ && H_ < 3.0)
-    //         im.data[i] = 0, im.data[i + im.w * im.h] = C, im.data[i + 2 * im.w * im.h] = X;
-    //     else if (3.0 <= H_ && H_ < 4.0)
-    //         im.data[i] = 0, im.data[i + im.w * im.h] = X, im.data[i + 2 * im.w * im.h] = C;
-    //     else if (4.0 <= H_ && H_ < 5.0)
-    //         im.data[i] = X, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = C;
-    //     else if (5.0 <= H_ && H_ < 1.0)
-    //         im.data[i] = C, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = X;
-
-    //     float m = V - C;
-
-    //     im.data[i] += m;
-    //     im.data[i + im.w * im.h] += m;
-    //     im.data[i + 2 * im.w * im.h] += m;
-    // }
-
-    // for (int i = 0; i < im.w * im.h; i++)
-    // {
-    //     float H = im.data[i];
-    //     float S = im.data[i + im.w * im.h];
-    //     float V = im.data[i + 2 * im.w * im.h];
-    //     float H_ = H * 6;
-    //     if (H_ >= 6)
-    //         H_ -= 6; // H must be < 1
-    //     float P = V * (1.0 - S);
-    //     float Q = V * (1.0 - S * (H_ - floor(H_)));
-    //     float T = V * (1.0 - S * (1.0 - (H_ - floor(H_))));
-    //     if (0 < H_ && H_ < 1.0)
-    //         im.data[i] = V, im.data[i + im.w * im.h] = T, im.data[i + 2 * im.w * im.h] = P;
-    //     else if (1.0 <= H_ && H_ < 2.0)
-    //         im.data[i] = Q, im.data[i + im.w * im.h] = V, im.data[i + 2 * im.w * im.h] = P;
-    //     else if (2.0 <= H_ && H_ < 3.0)
-    //         im.data[i] = P, im.data[i + im.w * im.h] = V, im.data[i + 2 * im.w * im.h] = T;
-    //     else if (3.0 <= H_ && H_ < 4.0)
-    //         im.data[i] = P, im.data[i + im.w * im.h] = Q, im.data[i + 2 * im.w * im.h] = V;
-    //     else if (4.0 <= H_ && H_ < 5.0)
-    //         im.data[i] = T, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = V;
-    //     else if (5.0 <= H_ && H_ < 6.0)
-    //         im.data[i] = V, im.data[i + im.w * im.h] = P, im.data[i + 2 * im.w * im.h] = Q;
-    //     // else
-    //     //     im.data[i] = 0, im.data[i + im.w * im.h] = 0, im.data[i + 2 * im.w * im.h] = 0;
-    // }
-
     // From, Color Gamut Transform Pairs (Smith A. R., 1978)
 
     for (int i = 0; i < im.w * im.h; i++)
@@ -233,6 +177,127 @@ void hsv_to_rgb(image im)
             B = 0;
             break;
         }
+
+        im.data[i] = R;
+        im.data[i + im.w * im.h] = G;
+        im.data[i + 2 * im.w * im.h] = B;
+    }
+    return;
+}
+
+void rgb_to_xyz(image im)
+{
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        float R = im.data[i];
+        float G = im.data[i + im.w * im.h];
+        float B = im.data[i + 2 * im.w * im.h];
+
+        // From https://www.cs.rit.edu/~ncs/color/t_convert.html
+
+        float X = 0.412453 * R + 0.357580 * G + 0.180423 * B;
+        float Y = 0.212671 * R + 0.715160 * G + 0.072169 * B;
+        float Z = 0.019334 * R + 0.119193 * G + 0.950227 * B;
+
+        im.data[i] = X;
+        im.data[i + im.w * im.h] = Y;
+        im.data[i + 2 * im.w * im.h] = Z;
+    }
+    return;
+}
+
+void xyz_to_luv(image im)
+{
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        float X = im.data[i];
+        float Y = im.data[i + im.w * im.h];
+        float Z = im.data[i + 2 * im.w * im.h];
+
+        // White point as reference (d65 taken here)
+        float Xn = 0.95;
+        float Yn = 1.0;
+        float Zn = 1.09;
+
+        float L = 0, u = 0, v = 0;
+        float un = 4 * Xn / (Xn + 15 * Yn + 3 * Zn);
+        float vn = 9 * Yn / (Xn + 15 * Yn + 3 * Zn);
+
+        // (6/29)^3 = 0.008856
+
+        if (Y / Yn <= 0.008856)
+            L = 903.3 * Y / Yn;
+        else
+            L = 116 * pow(Y / Yn, 1.0 / 3.0) - 16;
+
+        float u_ = (4 * X) / (X + 15 * Y + 3 * Z);
+        float v_ = (9 * Y) / (X + 15 * Y + 3 * Z);
+        u = 13 * L * (u_ - un);
+        v = 13 * L * (v_ - vn);
+
+        im.data[i] = L;
+        im.data[i + im.w * im.h] = u;
+        im.data[i + 2 * im.w * im.h] = v;
+    }
+    return;
+}
+
+// what for luv to hcl(cylindrical coordinates) ???
+
+void luv_to_xyz(image im)
+{
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        float L = im.data[i];
+        float u = im.data[i + im.w * im.h];
+        float v = im.data[i + 2 * im.w * im.h];
+
+        float Xn = 0.95;
+        float Yn = 1.0;
+        float Zn = 1.09;
+
+        float un = 4 * Xn / (Xn + 15 * Yn + 3 * Zn);
+        float vn = 9 * Yn / (Xn + 15 * Yn + 3 * Zn);
+
+        float u_ = u / (13 * L) + un;
+        float v_ = v / (13 * L) + vn;
+
+        float Y = 0;
+        if (L <= 8)
+            Y = Yn * L * pow(3.0 / 29.0, 3);
+        else
+            Y = Yn * pow((L + 16) / 116, 3);
+
+        float X = 0, Z = 0;
+        if (fabs(v_) < .00001)
+        {
+            X = 0;
+            Z = 0;
+        }
+        else
+        {
+            X = Y * 2.25 * u_ / v_;
+            Z = Y * (3 - 0.75 * u_ - 5 * v_) / v_;
+        }
+
+        im.data[i] = X;
+        im.data[i + im.w * im.h] = Y;
+        im.data[i + 2 * im.w * im.h] = Z;
+    }
+    return;
+}
+
+void xyz_to_rgb(image im)
+{
+    for (int i = 0; i < im.w * im.h; i++)
+    {
+        float X = im.data[i];
+        float Y = im.data[i + im.w * im.h];
+        float Z = im.data[i + 2 * im.w * im.h];
+
+        float R = 3.240479 * X - 1.537150 * Y - 0.498535 * Z;
+        float G = -0.969256 * X + 1.875992 * Y + 0.041556 * Z;
+        float B = 0.055648 * X - 0.204043 * Y + 1.057311 * Z;
 
         im.data[i] = R;
         im.data[i + im.w * im.h] = G;
