@@ -155,12 +155,20 @@ Ours is very close to the one obtained by matlab<br>
 ### Task 7.1 HSV to RGB
 
 (Update)
-Fixed code (usiing the algorithm described in [Smith, A. R. “Color Gamut Transform Pairs”. SIGGRAPH 78 Conference Proceedings. 1978, pp. 12–19](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/color78.pdf)
+Fixed code (usiing the algorithm described in [Smith, A. R. “Color Gamut Transform Pairs”. SIGGRAPH 78 Conference Proceedings. 1978, pp. 12–19](/color78.pdf)
 
 ![image](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/6f1d53cd-ffcc-468d-8408-de14aed0aee8)<br>
 $+16, 0$ Yay!
 
 Final Try!<br>
 ![dog_saturated](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/cb5de956-5838-487e-9562-505ed6d77f48)
+
+<hr>
+
+### Task 9 | RGB to XYZ to LUV to (HCL?) to LUV to XYZ to RGB
+
+Sources:<br>
+1. https://www.cs.rit.edu/~ncs/color/t_convert.html
+2. https://en.wikipedia.org/wiki/CIELUV#Cylindrical_representation_(CIELCh)
 
 <hr>
