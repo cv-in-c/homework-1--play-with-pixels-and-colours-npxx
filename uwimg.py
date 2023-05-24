@@ -43,6 +43,18 @@ rgb_to_hsv.argtypes = [IMAGE]
 hsv_to_rgb = lib.hsv_to_rgb
 hsv_to_rgb.argtypes = [IMAGE]
 
+rgb_to_xyz = lib.rgb_to_xyz
+rgb_to_xyz.argtypes = [IMAGE]
+
+xyz_to_luv = lib.xyz_to_luv
+xyz_to_luv.argtypes = [IMAGE]
+
+luv_to_xyz = lib.luv_to_xyz
+luv_to_xyz.argtypes = [IMAGE]
+
+xyz_to_rgb = lib.xyz_to_rgb
+xyz_to_rgb.argtypes = [IMAGE]
+
 shift_image = lib.shift_image
 shift_image.argtypes = [IMAGE, c_int, c_float]
 

@@ -18,6 +18,11 @@ void shift_image(image im, int c, float v);
 void clamp_image(image im);
 void scale_image(image im, int c, float v);
 
+void rgb_to_xyz(image im);
+void xyz_to_luv(image im);
+void luv_to_xyz(image im);
+void xyz_to_rgb(image im);
+
 // Loading and saving
 image make_image(int w, int h, int c);
 image load_image(char *filename);

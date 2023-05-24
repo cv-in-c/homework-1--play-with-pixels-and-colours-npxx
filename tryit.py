@@ -26,10 +26,28 @@ save_image(im, "doglight_fixed")
 # 6-7. Colorspace and saturation
 im = load_image("data/dog.jpg")
 rgb_to_hsv(im)
-#shift_image(im, 1, .2)
-scale_image(im, 1, 2)
+shift_image(im, 1, .2)
 clamp_image(im)
 hsv_to_rgb(im)
 save_image(im, "dog_saturated")
+
+# 8. Scale Image
+im = load_image("data/dog.jpg")
+rgb_to_hsv(im)
+scale_image(im, 1, 2)
+clamp_image(im)
+hsv_to_rgb(im)
+save_image(im, "dog_scaled")
+
+# 9. RGB to LUV
+im = load_image("data/dog.jpg")
+rgb_to_xyz(im)
+save_image(im, "rgb2xyz")
+xyz_to_luv(im)
+save_image(im, "xyz2luv")
+luv_to_xyz(im)
+save_image(im, "luv2xyz")
+xyz_to_rgb(im)
+save_image(im, "xyz2rgb")
 
 
