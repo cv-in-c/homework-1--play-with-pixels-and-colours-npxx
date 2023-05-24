@@ -174,3 +174,16 @@ Sources:<br>
 2. https://en.wikipedia.org/wiki/CIELUV#Cylindrical_representation_(CIELCh)
 
 <hr>
+
+### Update
+
+(updated the header files)
+(also added outputs of RGB -> XYZ -> LUV -> XYZ -> RGB conversions)
+(HCL, gamma skipped)
+
+|  RGB2XYZ  | XYZ2LUV  | LUV2XYZ  |   XYZ2RGB  |
+| ---       |   ---    | ---      | ---        |
+|![rgb2xyz](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/4fc17ce2-469b-4aeb-b828-1dfd135f7b60) |  ![xyz2luv](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/de32e167-ca0a-4a29-82c8-6a0e74f36f06)|  ![luv2xyz](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/2596aa7e-2bcb-4ede-ac9b-b2c03aac260c)|  ![xyz2rgb](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/e472f4ba-4605-4511-8d84-d1b7af688064)|
+  
+And our scaled dog too!<br>
+![dog_scaled](https://github.com/cv-in-c/homework-1--play-with-pixels-and-colours-npxx/assets/96121824/6582109d-c6ca-47a6-90df-948856073b44)
